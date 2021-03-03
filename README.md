@@ -1,2 +1,2 @@
 # test1
-Repo for Testing Django and CI/CD
+Repo for Testing Django, CI/CD and Docker.
