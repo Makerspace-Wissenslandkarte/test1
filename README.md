@@ -8,7 +8,7 @@ Repo for Testing Django, CI/CD and Docker.
 * Containerize this and run it from an IDE
 * Create an integration test to confirm it actually runs.
 * Set up an nginx before Django
-* Check out Github CodeQL
+* Check out Github CodeQL and https://github.com/marketplace/lgtm
 * Check if we can authenticate access to static files with XSendfile.
 * Connecting a database
 * Create user database
