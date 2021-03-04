@@ -3,6 +3,7 @@ Repo for Testing Django, CI/CD and Docker.
 
 ## Open Tasks (for this small test repo)
 
+* Set up pipenv instead of pip for reproducability and cleanup of installed dependencies.
 * Initialize Django
 * Containerize this and run it from an IDE
 * Create an integration test to confirm it actually runs.
