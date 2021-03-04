@@ -6,6 +6,8 @@ Repo for Testing Django, CI/CD and Docker.
 * Initialize Django
 * Containerize this and run it from an IDE
 * Create an integration test to confirm it actually runs.
+* Set up an nginx before Django
+* Check if we can authenticate access to static files with XSendfile.
 * Connecting a database
 * Create user database
 * Allow user authentication and provide session cookie
