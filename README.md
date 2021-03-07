@@ -19,5 +19,7 @@ Repo for Testing Django, CI/CD and Docker.
 
 ## Security
 
-* replace dev server with DEBUG mode from manage.py with nginx.
+* replace dev server from manage.py with nginx
+* disable debug mode by default, and instead only enable it, when some file is present (check date and hostname?)
+   to prevent devs from struggling with a "modified" settings.py 
 * secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)
