@@ -24,4 +24,4 @@ Repo for Testing Django, CI/CD and Docker.
 ## Security
 
 * replace dev server with DEBUG mode from manage.py with nginx.
-* generate a new secret https://github.com/Makerspace-Wissenslandkarte/test1/blob/main/app/wissenslandkarte/wissenslandkarte/settings.py#L23 for production use
+* secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)

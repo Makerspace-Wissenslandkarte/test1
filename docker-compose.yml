@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - "/app/data"
+      - "/app/wissenslandkarte/data"
     ports: 
       - "8000:8000"

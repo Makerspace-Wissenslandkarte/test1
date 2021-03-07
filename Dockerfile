@@ -6,7 +6,7 @@ COPY ./app/ /app/
 WORKDIR /opt/wissenslandkarte.betreiberverein.de/
 WORKDIR /app/
 RUN pipenv install --deploy
-VOLUME /app/data/
+VOLUME /app/wissenslandkarte/data/
 EXPOSE 8000
 WORKDIR /app/wissenslandkarte
 ENTRYPOINT ["pipenv", "run", "python", "manage.py"]

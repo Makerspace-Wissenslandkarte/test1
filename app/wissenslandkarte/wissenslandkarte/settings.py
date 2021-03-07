@@ -11,22 +11,35 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+import pickle
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ars4m^$td_!(+zo*rurma)#t0782w$bq2m!j9mah699$s$y&d+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
 
+
+def load_or_create_secret_key() -> str:
+    try:
+        secret = pickle.load(open(SECRET_KEY_FILE, "rb"))
+        return secret
+    except FileNotFoundError:
+        secret = get_random_secret_key()
+        pickle.dump(secret, open(SECRET_KEY_FILE, "wb"))
+        return secret
+
+
+SECRET_KEY = load_or_create_secret_key()
+
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -69,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wissenslandkarte.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -79,7 +91,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -99,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -112,7 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
