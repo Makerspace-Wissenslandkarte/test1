@@ -2,11 +2,7 @@
 Repo for Testing Django, CI/CD and Docker.
 
 ## Open Tasks (for this small test repo)
-
-* Set up pipenv instead of pip for reproducability and cleanup of installed dependencies.
-* Initialize Django
-* Containerize this and run it from an IDE
-* Create an integration test to confirm it actually runs.
+* run it from an IDE with an debugger?
 * Set up an nginx before Django
 * Check out Github CodeQL and https://github.com/marketplace/lgtm
 * Check if we can authenticate access to static files with XSendfile.

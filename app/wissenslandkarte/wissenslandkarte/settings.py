@@ -28,6 +28,9 @@ SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
 
 
 def load_or_create_secret_key() -> str:
+    # TODO we might want to record hostname and time of the secret creation in this pickle, to allow us to recognize if
+    #  it becomes a constant during docker builds. Also, we might want to delete/recreate it explicitly during
+    #  first startup.
     try:
         secret = pickle.load(open(SECRET_KEY_FILE, "rb"))
         return secret
