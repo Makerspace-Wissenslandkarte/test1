@@ -20,3 +20,7 @@ Repo for Testing Django, CI/CD and Docker.
 * Check if we can document the API with tools like Swagger or some other postprocessor pushing to Github or Github Pages
 * Provide a usable Plain Text API with Django Tools (Authentication via Header?)
 * Try out REST or GraphQL?
+
+## Security
+
+* replace dev server from manage.py with nginx.

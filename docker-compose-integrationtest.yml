@@ -1,0 +1,6 @@
+version: "3"
+services:
+  integration-test1:
+    build:
+      context: ./test/integration-test1
+      dockerfile: Dockerfile

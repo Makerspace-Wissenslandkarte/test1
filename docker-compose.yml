@@ -6,3 +6,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "/app/data"
+    ports: 
+      - "8000:8000"
