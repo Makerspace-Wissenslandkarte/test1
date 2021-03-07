@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - WISSENSLANDKARTE_DOMAINS="['www.example.com','example.com']"
     volumes:
       - "/app/wissenslandkarte/data"
     ports: 

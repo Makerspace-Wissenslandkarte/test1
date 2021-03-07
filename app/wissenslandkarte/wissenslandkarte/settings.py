@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 import pickle
+import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG_FILE.exists()
 
 SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
 
@@ -42,7 +45,8 @@ def load_or_create_secret_key() -> str:
 
 SECRET_KEY = load_or_create_secret_key()
 
-ALLOWED_HOSTS = []
+ENVIRONMENT_KEY_DOMAINS = "WISSENSLANDKARTE_DOMAINS"
+ALLOWED_HOSTS = json.loads(os.environ[ENVIRONMENT_KEY_DOMAINS])
 
 # Application definition
 

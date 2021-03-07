@@ -23,3 +23,5 @@ Repo for Testing Django, CI/CD and Docker.
 * disable debug mode by default, and instead only enable it, when some file is present (check date and hostname?)
    to prevent devs from struggling with a "modified" settings.py 
 * secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)
+* Docker is intended as production environment; if you want to just checkout this repo on a production server;
+  please ensure to reapply security measures (deleting default secrets) from within the Dockerfile. 

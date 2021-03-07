@@ -1,5 +1,8 @@
 version: "3"
 services:
+  python:
+    environment:
+      - WISSENSLANDKARTE_DOMAINS="['python']"
   integration-test1:
     build:
       context: ./test/integration-test1
