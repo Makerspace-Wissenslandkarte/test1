@@ -23,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# If you want to debug; create a file in the directory indicated above.
 DEBUG = DEBUG_FILE.exists()
 
 SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
@@ -46,17 +45,26 @@ def load_or_create_secret_key() -> str:
 SECRET_KEY = load_or_create_secret_key()
 
 ENVIRONMENT_KEY_DOMAINS = "WISSENSLANDKARTE_DOMAINS"
-ALLOWED_HOSTS = json.loads(os.environ[ENVIRONMENT_KEY_DOMAINS])
+
+
+def get_allowed_hosts_from_env_var():
+    return json.loads(os.environ[ENVIRONMENT_KEY_DOMAINS]) if ENVIRONMENT_KEY_DOMAINS in os.environ.keys() else []
+
+
+ALLOWED_HOSTS = get_allowed_hosts_from_env_var()
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin',  # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/
+    'django.contrib.auth',  # https://docs.djangoproject.com/en/3.2/ref/contrib/auth/
+    'django.contrib.contenttypes',  # https://docs.djangoproject.com/en/3.2/ref/contrib/contenttypes/
+    'django.contrib.sessions',  # https://docs.djangoproject.com/en/3.2/topics/http/sessions/
+    'django.contrib.messages',  # https://docs.djangoproject.com/en/3.2/ref/contrib/messages/
+    'django.contrib.staticfiles',  # https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
+
+    'api',
+    'compliance',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +103,7 @@ WSGI_APPLICATION = 'wissenslandkarte.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'data' / 'db.sqlite3',
     }
 }
 
@@ -110,7 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
+        # TODO we should use a german list for our target group, however, these are difficult to find.
+        #  Use Duden, given names, surnames, sports clubs and qwertz-Keywalks?
+        # https://docs.djangoproject.com/en/3.1/topics/auth/passwords/#password-validation
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        # 'password_list_path' : '...'
+        # This file should contain one lowercase password per line and may be plain text or gzipped.
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',

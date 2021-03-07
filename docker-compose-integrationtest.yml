@@ -7,3 +7,5 @@ services:
     build:
       context: ./test/integration-test1
       dockerfile: Dockerfile
+    depends_on:
+      - python

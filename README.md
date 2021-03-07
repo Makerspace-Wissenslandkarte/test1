@@ -3,6 +3,7 @@ Repo for Testing Django, CI/CD and Docker.
 
 ## Open Tasks (for this small test repo)
 * run it from an IDE with an debugger?
+* get rid of the redundant "app/ directory?"
 * Set up an nginx before Django
 * Check out Github CodeQL and https://github.com/marketplace/lgtm
 * Check if we can authenticate access to static files with XSendfile.
@@ -20,8 +21,16 @@ Repo for Testing Django, CI/CD and Docker.
 ## Security
 
 * replace dev server from manage.py with nginx
-* disable debug mode by default, and instead only enable it, when some file is present (check date and hostname?)
-   to prevent devs from struggling with a "modified" settings.py 
 * secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)
 * Docker is intended as production environment; if you want to just checkout this repo on a production server;
   please ensure to reapply security measures (deleting default secrets) from within the Dockerfile. 
+
+## How to develop?
+
+* install python3.8
+* pip install pipenv
+* pipenv install
+* You might want to create the ./app/wissenslandkarte/data/ACTIVATE_DEBUG_MODE file
+* cd ./app/wissenslandkarte/ && pipenv run python ./manage.py migrate
+* cd ./app/wissenslandkarte/ && pipenv run python ./manage.py createsuperuser
+* cd ./app/wissenslandkarte/ && pipenv run python ./manage.py runserver
