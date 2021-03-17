@@ -1,6 +1,15 @@
 # test1
 Repo for Testing Django, CI/CD and Docker.
 
+## setup
+* am besten linux verwenden
+* docker installieren
+* python version 3.8 installieren
+* git installieren
+* pipenv installieren, pipenv install
+* keine ide spezifischen kram rein
+* manage.py -> django (runserver)
+
 ## Open Tasks (for this small test repo)
 * run it from an IDE with an debugger?
 * Set up an nginx before Django
