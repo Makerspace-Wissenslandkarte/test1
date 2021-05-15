@@ -91,7 +91,7 @@ ROOT_URLCONF = 'wissenslandkarte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["src/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -158,7 +158,7 @@ USE_TZ = True
 # TODO implement collectstatic for nginx? https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = ["static"]
-STATIC_ROOT = "collectstatic/"
+STATIC_ROOT = "src/collectstatic/"
 
 # TODO decide how to handle development environments.
 # SECURE_HSTS_SECONDS = 0
