@@ -1,0 +1,26 @@
+<div>
+    <span class="tag"><span class="icon"><i class="fas fa-lock"></i></span>Profil Privat</span>
+</div>
+
+{#  show a random selection of these tags, and maybe prefer the unique and up-to-date tags instead of those also present in many other users currently attending/displayed (e.g. "programming", "woodworking"). #}
+<div    >
+    {% with icon='<span class="icon"><i class="fas fa-key"></i></span>' %}
+    <span class="tag is-success">{{ icon }}<span>Lasercutter</span></span>
+    <span class="tag is-success">{{ icon }}<span>Säge</span></span>
+    <span class="tag is-success">{{ icon }}<span>Standbohrmaschine</span></span>
+    <span class="tag is-success">{{ icon }}<span>Elektrowerktstatt</span></span>
+    <span class="tag is-success">{{ icon }}<span>3D-Drucker</span></span>
+    {% endwith %}
+</div>
+<div>
+    {% with icon='<span class="icon"><i class="fas fa-angle-double-up"></i></span>' %}
+    <span class="tag is-info">{{ icon }}<span>HTML</span></span>
+    <span class="tag is-info">{{ icon }}<span>CSS</span></span>
+    <span class="tag is-info">{{ icon }}<span>JS</span></span>
+    {% endwith %}
+</div>
+<div>
+<span class="tag"><span class="icon"><i class="fas fa-hammer"></i></span>
+<span>Wissenslandkarte</span>
+</span>
+</div>

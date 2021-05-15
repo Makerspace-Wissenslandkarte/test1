@@ -1,0 +1,129 @@
+{% extends "web_homepage/base.html" %}
+{% load static %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'web_homepage/cards.css' %}"/>
+{% endblock %}
+{% block navbar-items %}
+    {{ block.super }}
+    <a class="navbar-item">
+        Foo
+    </a>
+    <a class="navbar-item">
+        Bar
+    </a>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="hero is-danger">
+            <div class="hero-body">
+                <p class="title">
+                    WIP
+                </p>
+                <p class="subtitle">
+                    Work in Progress
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <h1 class="title">Hallo!</h1>
+            <div class="subtitle">Schön, dass du hier bist -- nur gibt es leider noch nichts zu sehen.</div>
+        </section>
+        <section class="section">
+            <h1 class="title">Wer ist heute da?</h1>
+            <div class="subtitle">Jetzt anwesend:</div>
+
+            <div class="columns is-mobile is-multiline is-centered">
+                {% for foobar in values %}
+                    <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <p class="title is-4">John {{ foobar }}</p>
+                                        <p class="subtitle is-6">@john{{ foobar }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <span class="ellipsis is-ellipsis-2">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Phasellus nec iaculis mauris.</span> <a>@bulmaio</a>.
+                                    <a href="#">#css</a> <a href="#">#responsive</a>
+                                    <hr/>
+                                    {% with profile=forloop.counter|divisibleby:2|yesno:'web_homepage/profile-card-prototype-1.html,web_homepage/profile-card-prototype-2.html' %}
+                                        {% include profile %}
+                                    {% endwith %}
+                                    <hr/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+        <section class="section">
+            <h1 class="title">Wen treffe ich diese Woche?</h1>
+            <div class="subtitle">Daten aus dem <a href="#">Betreuer*innenplan</a></div>
+
+            <div class="columns is-mobile is-multiline is-centered">
+                {% for foobar in values %}
+                    <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <p class="title is-4">John {{ foobar }}</p>
+                                        <p class="subtitle is-6">@john{{ foobar }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <span class="ellipsis is-ellipsis-2">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Phasellus nec iaculis mauris.</span> <a>@bulmaio</a>.
+                                    <a href="#">#css</a> <a href="#">#responsive</a>
+                                    <hr/>
+                                    {% with profile=forloop.counter|divisibleby:2|yesno:'web_homepage/profile-card-prototype-1.html,web_homepage/profile-card-prototype-2.html' %}
+                                        {% include profile %}
+                                    {% endwith %}
+                                    <hr/>
+                                <span class="tags are-normal">
+                                    {# Assumption: Today is Saturday; thus we only show Sunday to Friday. (optionally: next Saturday, too?) #}
+                                        <span class="tag has-tooltip" data-tooltip="01.01.1970">So</span>
+                                        <span class="tag has-tooltip" data-tooltip="XX.01.1970">{% cycle 'Mo' 'Di' 'Mi' 'Do' %}</span>
+                                        <span class="tag has-tooltip" data-tooltip="06.01.1970">Fr</span>
+                                </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

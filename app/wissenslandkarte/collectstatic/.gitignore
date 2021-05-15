@@ -1,0 +1,3 @@
+# This directory is intended for django to output its static files into -- do not add any files here.
+# see `manage.py collectstatic`
+*

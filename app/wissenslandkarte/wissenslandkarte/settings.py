@@ -25,6 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
 # If you want to debug; create a file in the directory indicated above.
 DEBUG = DEBUG_FILE.exists()
+# this allows to use {% if debug %} in django templates.
+INTERNAL_IPS = ["127.0.0.1"]
 
 SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
 
@@ -62,19 +64,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',  # https://docs.djangoproject.com/en/3.2/topics/http/sessions/
     'django.contrib.messages',  # https://docs.djangoproject.com/en/3.2/ref/contrib/messages/
     'django.contrib.staticfiles',  # https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
-
+    'fontawesome_5',
     'api',
     'compliance',
+    'web_homepage',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # TODO both of these are not active for static files, and have to be configured in nginx again.
+    #  this applies especially to:
+    #  * CSP on static html files that are served to be displayed
+    #  * User Uploads, e.g. images.
+    #  * HSTS on every ressource.
+    'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'wissenslandkarte.urls'
@@ -82,7 +91,7 @@ ROOT_URLCONF = 'wissenslandkarte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,4 +155,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# TODO implement collectstatic for nginx? https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
 STATIC_URL = '/static/'
+#STATICFILES_DIRS = ["static"]
+STATIC_ROOT = "collectstatic/"
+
+# TODO decide how to handle development environments.
+# SECURE_HSTS_SECONDS = 0
+
+CSP_DEFAULT_SRC = ("'self'")
+CSP_IMG_SRC = ("'self'", "https://betreiberverein.de")
+if DEBUG:
+    # this is required for live.js.
+    CSP_DEFAULT_SRC = ("'self'","'unsafe-inline'","'unsafe-eval'")
+    CSP_SCRIPT_SRC = ("'self'","'unsafe-inline'","'unsafe-eval'")
+if not DEBUG:
+    # This should only be enabled from certain docker container builds, due to a quota; and should be configurable by the admin.
+    # CSP_REPORT_URI = "https://p.report-uri.com/r/d/csp/enforce"
+    pass
+#CSP_REPORT_TO = "default"

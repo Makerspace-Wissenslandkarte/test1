@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{% block title %}Wissenslandkarte{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'web_homepage/bulma.css' %}"/>
+        <link rel="stylesheet" href="{% static 'web_homepage/bulma-tooltip.css' %}"/>
+        {% load fontawesome_5 %}
+        {% fontawesome_5_static %}
+        {% block livejs %}
+            {% if debug %}
+                <script src="{% static 'web_homepage/live.js' %}"></script>
+            {% endif %}
+        {% endblock %}
+        <script src="{% static 'web_homepage/vue.js' %}"></script>
+        <link rel="shortcut icon" type="image/png"
+              href="https://betreiberverein.de/wp-content/uploads/2020/11/cropped-201120_Foerderverein_LOGO_RGB_ohneText.png"/>
+    {% endblock %}
+</head>
+<body>
+<div>
+    {% block body %}
+        {% block navbar %}
+            <div class="container">
+                {% load static %}
+                <script src="{% static 'web_homepage/vue_navbar.js' %}" defer></script>
+                <nav id="navbar" class="navbar" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="{% url 'home' %}">
+                            <img src="https://betreiberverein.de/wp-content/uploads/2020/11/cropped-201120_Foerderverein_LOGO_RGB_ohneText.png">
+                        </a>
+                        {# This is for mobile #}
+                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                           data-target="navbarBasicExample"
+                           :class="{ 'is-active': showNav }" @click="showNav = !showNav">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showNav }">
+                        <div class="navbar-start">
+                            <a class="navbar-item" href="{% url 'home' %}">
+                                Wissenslandkarte
+                            </a>
+                            {% block navbar-items %}
+                            {% endblock %}
+                            {% block navbar-about %}
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <a class="navbar-link" href="{% url 'imprint' %}">
+                                        Über uns
+                                    </a>
+
+                                    <div class="navbar-dropdown">
+                                        <a class="navbar-item" href="{% url 'imprint' %}">
+                                            Impressum
+                                        </a>
+                                        <a class="navbar-item" href="{% url 'privacy policy' %}">
+                                            Datenschutz
+                                        </a>
+                                        <hr class="navbar-divider">
+                                        <a class="navbar-item" href="{% url 'imprint' %}">
+                                            Kontakt
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a class="button is-primary">
+                                        <strong>Sign up</strong>
+                                    </a>
+                                    <a class="button is-light">
+                                        Log in
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        {% endblock %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+    {% block footer %}
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Wissenslandkarte Prototype</strong> by <a href="https://betreiberverein.de">betreiberverein
+                    members</a>.
+                </p>
+            </div>
+        </footer>
+    {% endblock %}
+</div>
+</body>
+</html>
