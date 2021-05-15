@@ -3,6 +3,8 @@
 <head>
     {% block head %}
         <meta charset="UTF-8">
+        {# This allows the integration test to verify the correct html is delivered. #}
+        <meta name="wissenslandkarte-integration-test-token" content="c0bbdbcd-957f-4d56-ac3c-6c06ae06e27e">
         <title>{% block title %}Wissenslandkarte{% endblock %}</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'web_homepage/bulma.css' %}"/>

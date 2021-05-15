@@ -1,6 +1,14 @@
 # test1
 Repo for Testing Django, CI/CD and Docker.
 
+## How to run.
+Please don't run this for production yet.
+
+* Check ./src/wissenslandkarte/settings.py:
+  * You might want to enable HSTS
+  * You might configure a report URI
+  * You must set ALLOWED_HOSTS
+
 ## Open Tasks (for this small test repo)
 * run it from an IDE with an debugger?
 * get rid of the redundant "app/ directory?"
@@ -21,6 +29,7 @@ Repo for Testing Django, CI/CD and Docker.
 ## Security
 
 * replace dev server from manage.py with nginx
+* ensure proper HTTPS Host header in reverse proxy. 
 * secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)
 * Docker is intended as production environment; if you want to just checkout this repo on a production server;
   please ensure to reapply security measures (deleting default secrets) from within the Dockerfile. 

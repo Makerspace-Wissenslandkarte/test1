@@ -8,8 +8,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    #environment:
-      #- WISSENSLANDKARTE_DOMAINS="['www.example.com','example.com']"
     volumes:
       - "wissenslandkarte-python-data:/opt/wissenslandkarte.betreiberverein.de/data"
     ports: 

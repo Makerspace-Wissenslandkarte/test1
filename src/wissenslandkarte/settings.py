@@ -26,7 +26,7 @@ DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
 # If you want to debug; create a file in the directory indicated above.
 DEBUG = DEBUG_FILE.exists()
 # this allows to use {% if debug %} in django templates.
-INTERNAL_IPS = ["127.0.0.1"]
+INTERNAL_IPS = ['127.0.0.1', '::1']
 
 SECRET_KEY_FILE = BASE_DIR.joinpath("./data/django-secret-key.pickle")
 
@@ -46,14 +46,13 @@ def load_or_create_secret_key() -> str:
 
 SECRET_KEY = load_or_create_secret_key()
 
-ENVIRONMENT_KEY_DOMAINS = "WISSENSLANDKARTE_DOMAINS"
-
-
-def get_allowed_hosts_from_env_var():
-    return json.loads(os.environ[ENVIRONMENT_KEY_DOMAINS]) if ENVIRONMENT_KEY_DOMAINS in os.environ.keys() else []
-
-
-ALLOWED_HOSTS = get_allowed_hosts_from_env_var()
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '::1',
+    'python',
+    # 'wissenslandkarte.betreiberverein.de',
+]
 
 # Application definition
 
@@ -91,7 +90,7 @@ ROOT_URLCONF = 'wissenslandkarte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["src/templates"],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
