@@ -11,7 +11,7 @@ services:
     #environment:
       #- WISSENSLANDKARTE_DOMAINS="['www.example.com','example.com']"
     volumes:
-      - "wissenslandkarte-python-data:/app/wissenslandkarte/data"
+      - "wissenslandkarte-python-data:/opt/wissenslandkarte.betreiberverein.de/data"
     ports: 
       - "8000:8000"
 volumes:

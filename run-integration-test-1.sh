@@ -1,4 +1,17 @@
 #!/bin/bash
-docker-compose -f docker-compose.yml -f docker-compose-integrationtest.yml build
-docker-compose -f docker-compose.yml -f docker-compose-integrationtest.yml run python migrate
-docker-compose -f docker-compose.yml -f docker-compose-integrationtest.yml up --exit-code-from integration-test1
+set -euf -o pipefail
+# Set unique name to avoid test interfering with a running service
+export COMPOSE_PROJECT_NAME="$(basename "$(pwd)")-$(basename "$0")-$(uuidgen)"
+
+function run(){
+  COMPOSE="docker-compose -f docker-compose.yml -f docker-compose-integrationtest.yml"
+  $COMPOSE build
+  $COMPOSE run python migrate
+  $COMPOSE up --exit-code-from integration-test1
+}
+function cleanup(){
+  $COMPOSE rm -f
+}
+
+trap cleanup EXIT
+run

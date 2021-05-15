@@ -1,4 +1,6 @@
 #!/bin/bash
-docker-compose -f docker-compose.yml build
-docker-compose -f docker-compose.yml run python migrate
-docker-compose -f docker-compose.yml up
+set -euf -o pipefail
+COMPOSE="docker-compose -f docker-compose.yml"
+$COMPOSE build
+$COMPOSE run python migrate
+$COMPOSE up
