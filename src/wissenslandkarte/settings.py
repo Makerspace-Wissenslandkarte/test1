@@ -49,7 +49,7 @@ SECRET_KEY = load_or_create_secret_key()
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '::1',
+    '[::1]',
     'python',
     # 'wissenslandkarte.betreiberverein.de',
 ]
