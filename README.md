@@ -31,6 +31,9 @@ Please don't run this for production yet.
   * Permissions can be removed when a PGSQL DB is present instead of sqlite
   * Dynaconf or environment variables loaded by pipenv from an env file can be used
     instead of the flag file; this would allow automated configuration changes, too.
+* SESSION_COOKIE_SECURE and SESSION_COOKIE_SECURE are not set, this should be activated when a HTTPS reverse proxy is present.
+* Connections between Docker Containers are not encrypted yet.
+
 
 ## How to develop?
 
