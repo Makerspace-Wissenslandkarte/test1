@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euf -o pipefail
 COMPOSE="docker-compose -f docker-compose.yml"
-$COMPOSE build
-$COMPOSE run python migrate
+$COMPOSE build --parallel
+$COMPOSE run python ./manage.py migrate
 $COMPOSE up

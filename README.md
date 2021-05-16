@@ -7,12 +7,10 @@ Please don't run this for production yet.
 * Check ./src/wissenslandkarte/settings.py:
   * You might want to enable HSTS
   * You might configure a report URI
-  * You must set ALLOWED_HOSTS
-
+  * You must set ALLOWED_HOST
+* Check ./nginx/default.conf
+  * You must set the server_name under which the server will be reachable, otherwise all requests will be refused (421) 
 ## Open Tasks (for this small test repo)
-* run it from an IDE with an debugger?
-* get rid of the redundant "app/ directory?"
-* Set up an nginx before Django
 * Check out Github CodeQL and https://github.com/marketplace/lgtm
 * Check if we can authenticate access to static files with XSendfile.
 * Connecting a database
@@ -21,18 +19,18 @@ Please don't run this for production yet.
 * User Registration
 * Unit Tests
 * Automatically running unit tests
-* Automatically publishing docker containers
 * Check if we can document the API with tools like Swagger or some other postprocessor pushing to Github or Github Pages
 * Provide a usable Plain Text API with Django Tools (Authentication via Header?)
 * Try out REST or GraphQL?
 
 ## Security
 
-* replace dev server from manage.py with nginx
-* ensure proper HTTPS Host header in reverse proxy. 
-* secret is generated on first start of server, but only if the config has not been loaded before (e.g. within some docker run commands during image creation.)
 * Docker is intended as production environment; if you want to just checkout this repo on a production server;
   please ensure to reapply security measures (deleting default secrets) from within the Dockerfile. 
+* The debug mode is currently enabled via a flag file in the data dir, where the application itself still has write permissions
+  * Permissions can be removed when a PGSQL DB is present instead of sqlite
+  * Dynaconf or environment variables loaded by pipenv from an env file can be used
+    instead of the flag file; this would allow automated configuration changes, too.
 
 ## How to develop?
 

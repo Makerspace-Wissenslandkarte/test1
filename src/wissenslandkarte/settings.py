@@ -154,10 +154,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# TODO implement collectstatic for nginx? https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = ["static"]
-STATIC_ROOT = "src/collectstatic/"
+STATIC_ROOT = os.getenv("COLLECTSTATIC_DIR", None)
 
 # TODO decide how to handle development environments.
 # SECURE_HSTS_SECONDS = 0
