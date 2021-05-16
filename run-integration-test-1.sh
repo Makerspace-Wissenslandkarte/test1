@@ -6,7 +6,7 @@ export COMPOSE_PROJECT_NAME="$(basename "$(pwd)")-$(basename "$0")-$(uuidgen)"
 function run(){
   COMPOSE="docker-compose -f docker-compose.yml -f docker-compose-integrationtest.yml"
   $COMPOSE build
-  $COMPOSE run python migrate
+  $COMPOSE run python ./manage.py migrate
   $COMPOSE up --exit-code-from integration-test1
 }
 function cleanup(){

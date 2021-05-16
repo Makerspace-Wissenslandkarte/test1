@@ -2,15 +2,23 @@
 # docker-compose run python migrate
 # docker-compose run
 
-version: "3"
+version: "3.4"
 services:
   python:
     build:
       context: .
       dockerfile: Dockerfile
+      target: python-web
     volumes:
       - "wissenslandkarte-python-data:/opt/wissenslandkarte.betreiberverein.de/data"
-    ports: 
-      - "8000:8000"
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - python
 volumes:
   wissenslandkarte-python-data:
