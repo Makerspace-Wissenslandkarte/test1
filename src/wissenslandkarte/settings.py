@@ -101,6 +101,14 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ["jinja-templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment' : 'web_homepage.jinja.environment'
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'wissenslandkarte.wsgi.application'

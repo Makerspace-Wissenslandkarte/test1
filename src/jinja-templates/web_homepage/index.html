@@ -1,11 +1,10 @@
-{% extends "web_homepage/base.html" %}
-{% load static %}
+{% extends "web_homepage/base.html" %}}
 {% block head %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'web_homepage/cards.css' %}"/>
+    {{ super() }}
+    <link rel="stylesheet" href="{{ static('web_homepage/cards.css') }}"/>
 {% endblock %}
-{% block navbar-items %}
-    {{ block.super }}
+{% block navbar_items %}
+    {{ super() }}
     <a class="navbar-item">
         Foo
     </a>
@@ -39,14 +38,14 @@
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3">
-                                    <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                    <img src="{{ static("web_homepage/louvre.jpg") }}" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-left">
                                         <figure class="image is-48x48">
-                                            <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                            <img src="{{ static("web_homepage/louvre.jpg") }}" alt="Placeholder image">
                                         </figure>
                                     </div>
                                     <div class="media-content">
@@ -61,9 +60,7 @@
                                         Phasellus nec iaculis mauris.</span> <a>@bulmaio</a>.
                                     <a href="#">#css</a> <a href="#">#responsive</a>
                                     <hr/>
-                                    {% with profile=forloop.counter|divisibleby:2|yesno:'web_homepage/profile-card-prototype-1.html,web_homepage/profile-card-prototype-2.html' %}
-                                        {% include profile %}
-                                    {% endwith %}
+                                    {% include loop.cycle('web_homepage/profile-card-prototype-1.html','web_homepage/profile-card-prototype-2.html') %}
                                     <hr/>
                                 </div>
 
@@ -85,14 +82,14 @@
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3">
-                                    <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                    <img src="{{ static("web_homepage/louvre.jpg") }}" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-left">
                                         <figure class="image is-48x48">
-                                            <img src="{% static "web_homepage/louvre.jpg" %}" alt="Placeholder image">
+                                            <img src="{{ static("web_homepage/louvre.jpg") }}" alt="Placeholder image">
                                         </figure>
                                     </div>
                                     <div class="media-content">
@@ -107,14 +104,14 @@
                                         Phasellus nec iaculis mauris.</span> <a>@bulmaio</a>.
                                     <a href="#">#css</a> <a href="#">#responsive</a>
                                     <hr/>
-                                    {% with profile=forloop.counter|divisibleby:2|yesno:'web_homepage/profile-card-prototype-1.html,web_homepage/profile-card-prototype-2.html' %}
-                                        {% include profile %}
-                                    {% endwith %}
+                                    {% include loop.cycle('web_homepage/profile-card-prototype-1.html','web_homepage/profile-card-prototype-2.html') %}
                                     <hr/>
-                                <span class="tags are-normal">
+                                    <span class="tags are-normal">
                                     {# Assumption: Today is Saturday; thus we only show Sunday to Friday. (optionally: next Saturday, too?) #}
                                         <span class="tag has-tooltip" data-tooltip="01.01.1970">So</span>
-                                        <span class="tag has-tooltip" data-tooltip="XX.01.1970">{% cycle 'Mo' 'Di' 'Mi' 'Do' %}</span>
+                                        <span
+                                                class="tag has-tooltip"
+                                                data-tooltip="XX.01.1970">{{ loop.cycle('Mo','Di','Mi','Do') }}</span>
                                         <span class="tag has-tooltip" data-tooltip="06.01.1970">Fr</span>
                                 </span>
                                 </div>

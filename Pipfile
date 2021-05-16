@@ -8,6 +8,7 @@ django = "*"
 django-csp = "*"
 django-fontawesome-5 = "*"
 gunicorn = "*"
+jinja2 = "*"
 
 [dev-packages]
 pylint = "*"

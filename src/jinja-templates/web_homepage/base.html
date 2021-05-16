@@ -6,19 +6,18 @@
         {# This allows the integration test to verify the correct html is delivered. #}
         <meta name="wissenslandkarte-integration-test-token" content="c0bbdbcd-957f-4d56-ac3c-6c06ae06e27e">
         <title>{% block title %}Wissenslandkarte{% endblock %}</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'web_homepage/bulma.css' %}"/>
-        <link rel="stylesheet" href="{% static 'web_homepage/bulma-tooltip.css' %}"/>
-        {% load fontawesome_5 %}
-        {% fontawesome_5_static %}
+        <link rel="stylesheet" href="{{ static("web_homepage/bulma.css") }}"/>
+        <link rel="stylesheet" href="{{ static("web_homepage/bulma-tooltip.css") }}"/>
+        {{ fontawesome_5_static() }}
         {% block livejs %}
             {% if debug %}
-                <script src="{% static 'web_homepage/live.js' %}"></script>
+                <script src="{{ static("web_homepage/live.js") }}"></script>
             {% endif %}
         {% endblock %}
-        <script src="{% static 'web_homepage/vue.js' %}"></script>
-        <link rel="shortcut icon" type="image/png"
-              href="https://betreiberverein.de/wp-content/uploads/2020/11/cropped-201120_Foerderverein_LOGO_RGB_ohneText.png"/>
+        <script src="{{ static("web_homepage/vue.js") }}"></script>
+        <link
+                rel="shortcut icon" type="image/png"
+                href="https://betreiberverein.de/wp-content/uploads/2020/11/cropped-201120_Foerderverein_LOGO_RGB_ohneText.png"/>
     {% endblock %}
 </head>
 <body>
@@ -26,17 +25,17 @@
     {% block body %}
         {% block navbar %}
             <div class="container">
-                {% load static %}
-                <script src="{% static 'web_homepage/vue_navbar.js' %}" defer></script>
+                <script src="{{ static("web_homepage/vue_navbar.js") }}" defer></script>
                 <nav id="navbar" class="navbar" role="navigation" aria-label="main navigation">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="{% url 'home' %}">
+                        <a class="navbar-item" href="{{ url('home') }}">
                             <img src="https://betreiberverein.de/wp-content/uploads/2020/11/cropped-201120_Foerderverein_LOGO_RGB_ohneText.png">
                         </a>
                         {# This is for mobile #}
-                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                           data-target="navbarBasicExample"
-                           :class="{ 'is-active': showNav }" @click="showNav = !showNav">
+                        <a
+                                role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                                data-target="navbarBasicExample"
+                                :class="{ 'is-active': showNav }" @click="showNav = !showNav">
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
@@ -45,26 +44,26 @@
 
                     <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showNav }">
                         <div class="navbar-start">
-                            <a class="navbar-item" href="{% url 'home' %}">
+                            <a class="navbar-item" href="{{ url('home') }}">
                                 Wissenslandkarte
                             </a>
-                            {% block navbar-items %}
+                            {% block navbar_items %}
                             {% endblock %}
-                            {% block navbar-about %}
+                            {% block navbar_about %}
                                 <div class="navbar-item has-dropdown is-hoverable">
-                                    <a class="navbar-link" href="{% url 'imprint' %}">
+                                    <a class="navbar-link" href="{{ url('imprint') }}">
                                         Über uns
                                     </a>
 
                                     <div class="navbar-dropdown">
-                                        <a class="navbar-item" href="{% url 'imprint' %}">
+                                        <a class="navbar-item" href="{{ url('imprint') }}">
                                             Impressum
                                         </a>
-                                        <a class="navbar-item" href="{% url 'privacy policy' %}">
+                                        <a class="navbar-item" href="{{ url('privacy policy') }}">
                                             Datenschutz
                                         </a>
                                         <hr class="navbar-divider">
-                                        <a class="navbar-item" href="{% url 'imprint' %}">
+                                        <a class="navbar-item" href="{{ url('imprint') }}">
                                             Kontakt
                                         </a>
                                     </div>
