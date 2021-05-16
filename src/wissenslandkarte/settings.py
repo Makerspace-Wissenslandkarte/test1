@@ -106,7 +106,7 @@ TEMPLATES = [
         'DIRS': ["jinja-templates"],
         'APP_DIRS': True,
         'OPTIONS': {
-            'environment' : 'web_homepage.jinja.environment'
+            'environment': 'web_homepage.jinja.environment'
         },
     },
 ]
@@ -163,20 +163,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = ["static"]
+# STATICFILES_DIRS = ["static"]
 STATIC_ROOT = os.getenv("COLLECTSTATIC_DIR", None)
 
 # TODO decide how to handle development environments.
 # SECURE_HSTS_SECONDS = 0
 
-CSP_DEFAULT_SRC = ("'self'")
+# TODO
+#  [Vue warn]: It seems you are using the standalone build of Vue.js in an environment with Content Security Policy
+#  that prohibits unsafe-eval. The template compiler cannot work in this environment. Consider relaxing the policy to
+#  allow unsafe-eval or pre-compiling your templates into render functions.
+CSP_DEFAULT_SRC = ("'self'", "'unsafe-eval'")
 CSP_IMG_SRC = ("'self'", "https://betreiberverein.de")
 if DEBUG:
     # this is required for live.js.
-    CSP_DEFAULT_SRC = ("'self'","'unsafe-inline'","'unsafe-eval'")
-    CSP_SCRIPT_SRC = ("'self'","'unsafe-inline'","'unsafe-eval'")
+    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'")
+    CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'")
 if not DEBUG:
     # This should only be enabled from certain docker container builds, due to a quota; and should be configurable by the admin.
     # CSP_REPORT_URI = "https://p.report-uri.com/r/d/csp/enforce"
     pass
-#CSP_REPORT_TO = "default"
+# CSP_REPORT_TO = "default"

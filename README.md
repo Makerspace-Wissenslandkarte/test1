@@ -33,7 +33,7 @@ Please don't run this for production yet.
     instead of the flag file; this would allow automated configuration changes, too.
 * SESSION_COOKIE_SECURE and SESSION_COOKIE_SECURE are not set, this should be activated when a HTTPS reverse proxy is present.
 * Connections between Docker Containers are not encrypted yet.
-
+* unsafe-eval is still enabled in Production mode due to standalone Vue.js requirements -- see settings.py.
 
 ## How to develop?
 
