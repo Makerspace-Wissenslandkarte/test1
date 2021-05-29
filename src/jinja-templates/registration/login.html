@@ -1,0 +1,50 @@
+{% extends 'web_homepage/base.html' %}
+{% block content %}
+    {% if next %}
+        {% if request.user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <div class="columns is-desktop">
+        <div class="column">
+            <form method="post" action="{{ url('login') }}" class="box">
+                <h2 class="title is-5">Login</h2>
+                {% if form.errors %}
+                    <div class="notification is-danger">
+                        <p>Your username and password didn't match. Please try again.</p>
+                    </div>
+                {% endif %}
+                {{ csrf_input }}
+                <div class="field">
+                    <label class="label">{{ form.username.label_tag() }}</label>
+                    <div class="control has-icons-left">
+                        {% set _ = form.username.field.widget.attrs.update({'class':'input'}) %}
+                        {{ form.username }}
+                        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                    </div>
+                    <p class="help"></p>
+                </div>
+                <div class="field">
+                    <label class="label">{{ form.password.label_tag() }}</label>
+                    <div class="control has-icons-left">
+                        {% set _ = form.password.field.widget.attrs.update({'class':'input'}) %}
+                        {{ form.password }}
+                        <span class="icon is-small is-left"><i class="fas fa-key"></i></span>
+                    </div>
+                    <p class="help"></p>
+                </div>
+                <input type="submit" class="button is-link" value="Login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+        <div class="column">
+            <div class="box">
+                <h2 class="title is-5">Passwort vergessen</h2>
+                <a href="{{ url ('password_reset') }}" class="button is-link is-light">Passwort zurücksetzen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

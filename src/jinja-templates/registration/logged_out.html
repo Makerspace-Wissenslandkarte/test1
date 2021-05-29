@@ -1,0 +1,12 @@
+{% extends 'web_homepage/base.html' %}
+{% block content %}
+    <div class="notification is-success">
+    <h2 class="title is-5">Abgemeldet</h2>
+    <h2 class="subtitle is-5">Auf Wiedersehen!</h2>
+    </div>
+    <div class="level">
+    <div class="level-item"><a class="button is-link" href="{{ url('home') }}">Zur Startseite</a> </div>
+    <div class="level-item"><a class="button is-link is-light" href="{{ url('login') }}">Wieder anmelden</a> </div>
+    </div>
+    <div></div>
+{% endblock %}

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'api',
     'compliance',
     'web_homepage',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wissenslandkarte.urls'
-
+AUTH_USER_MODEL = "accounts.User"
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ["jinja-templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'web_homepage.jinja.environment'
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ["templates"],
@@ -99,14 +108,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        },
-    },
-    {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': ["jinja-templates"],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'environment': 'web_homepage.jinja.environment'
         },
     },
 ]
