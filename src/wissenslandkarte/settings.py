@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
 # If you want to debug; create a file in the directory indicated above.
 DEBUG = DEBUG_FILE.exists()
+ENABLE_LIVE_JS = DEBUG and False
 # this allows to use {% if debug %} in django templates.
 INTERNAL_IPS = ['127.0.0.1', '::1']
 
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'api',
     'compliance',
     'web_homepage',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +88,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wissenslandkarte.urls'
-
+AUTH_USER_MODEL = "accounts.User"
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ["jinja-templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'web_homepage.jinja.environment'
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ["templates"],
@@ -99,14 +109,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        },
-    },
-    {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': ["jinja-templates"],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'environment': 'web_homepage.jinja.environment'
         },
     },
 ]
