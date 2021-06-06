@@ -54,3 +54,4 @@ VOLUME /opt/wissenslandkarte.betreiberverein.de/data/
 EXPOSE 8000
 ENTRYPOINT ["pipenv", "run"]
 CMD ["gunicorn", "wissenslandkarte.wsgi"]
+

@@ -7,5 +7,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: test
+      - name: test-reachability
         run: ./run-integration-test-1.sh
+      - name: test-selenium
+        run: ./run-selenium-test-1.sh
