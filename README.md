@@ -14,11 +14,7 @@ Please don't run this for production yet.
 * Check out Github CodeQL and https://github.com/marketplace/lgtm
 * Check if we can authenticate access to static files with XSendfile.
 * Connecting a database
-* Create user database
-* Allow user authentication and provide session cookie
 * User Registration
-* Unit Tests
-* Automatically running unit tests
 * Check if we can document the API with tools like Swagger or some other postprocessor pushing to Github or Github Pages
 * Provide a usable Plain Text API with Django Tools (Authentication via Header?)
 * Try out REST or GraphQL?
