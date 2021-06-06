@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ static("web_homepage/bulma-tooltip.css") }}"/>
         {{ fontawesome_5_static() }}
         {% block livejs %}
-            {% if debug %}
+            {% if setting_enable_livejs %}
                 <script src="{{ static("web_homepage/live.js") }}"></script>
             {% endif %}
         {% endblock %}

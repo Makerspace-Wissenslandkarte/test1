@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG_FILE = BASE_DIR.joinpath("./data/ACTIVATE_DEBUG_MODE")
 # If you want to debug; create a file in the directory indicated above.
 DEBUG = DEBUG_FILE.exists()
+ENABLE_LIVE_JS = DEBUG and False
 # this allows to use {% if debug %} in django templates.
 INTERNAL_IPS = ['127.0.0.1', '::1']
 
