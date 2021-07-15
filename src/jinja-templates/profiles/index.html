@@ -4,7 +4,6 @@
 <a class="navbar-item"> Foo </a>
 <a class="navbar-item"> Bar </a>
 {% endblock %} {% block content %}
-<script src="{{ static("profiles/vue_profiles.js") }}" defer></script>
 <main>
   <section class="section">
     <h1 class="title is-2">Profil bearbeiten</h1>
@@ -38,7 +37,6 @@
           </li>
           {% endfor %}
         </ul>
-        <table class="table" style="width: 100%"></table>
       </div>
       <div class="column has-background-link-light">
         <div>
